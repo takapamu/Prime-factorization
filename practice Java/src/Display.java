@@ -47,8 +47,6 @@ public class Display implements ActionListener
     top_panel.add(msg_lbl);
     setLabelFont(msg_lbl, Color.BLACK, 0, 15, 480, 20, 20, false);
 
-     //ミドルパネルの表示設定
-
     mid_panel = new JPanel();
     setPanel(mid_panel, Color.CYAN, null, new Dimension(480, 180 ));
     disp.add( mid_panel, BorderLayout.CENTER );
@@ -69,9 +67,60 @@ public class Display implements ActionListener
     setLabelFont(child_suit_lbl, Color.LIGHT_GRAY, 300, 10, 80, 100, 16, false);
     setLabelFont(child_no_lbl, Color.LIGHT_GRAY, 300, 35, 80, 100, 16, true);
 
-    //ボトムパネルの表示設定
     bottom_panel = new JPanel();
     setPanel( bottom_panel, Color.LIGHT_GRAY, new BorderLayout(), new Dimension(480, 50));
     disp.add(bottom_panel, BorderLayout.SOUTH);
+
+    btn_high = new JButton("HIGH");
+    setButton( btn_high, this, 240, 50, 20 );
+    bottom_panel.add( btn_high, BorderLayout.WEST );
+
+    btn_low = new JButton("LOW");
+    setButton( btn_low, this, 240, 50, 20 );
+    bottom_panel.add( btn_low, BorderLayout.EAST );
+
+    disp.setVisible(true);
   }
+
+  public void actionPerformed(ActionEvent e)
+  {
+    String cmd = e.getActionCommand();
+    int parent_no = parent.GetNo();
+    int child_no = child.GetNo();
+    int child_suit = child.GetSuit();
+
+    child_no_lbl.setBackground(Color.WHITE);
+    child_no_lbl.setText( getNoStr( child.GetNo()));
+    child_suit_lbl.setBackground(Color.WHITE);
+    child_suit_lbl.ssetIcon( getSuitIcon( child_suit ));
+
+    if ( cmd.equals("HIGH"))
+    {
+
+      btn_high.setBackground(Color.GREEN);
+
+      if( parent_no < child_no )
+        msg_lbl.setText("大正解、あなたの勝ちです！");
+      else if (child_no < parent_no )
+       msg_lbl.setText("不正解、あなたの負けです！");
+      else
+        msg_lbl.setText("奇遇ですね。引き分けです！");
+    }
+    else if ( cmd.equals("LOW"))
+    {
+      btn_low.setBackground(Color.GREEN);
+      
+      if( parent_no < child_no )
+        msg_lbl.setText("大正解、あなたの勝ちです！");
+      else if (child_no < parent_no )
+        msg_lbl.setText("不正解、あなたの負けです！");
+      else
+        msg_lbl.setText("奇遇ですね。引き分けです！");
+
+    }
+      return;
+  }
+
+
+  //パネルのフォント設定を行う
 }
