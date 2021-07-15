@@ -120,7 +120,66 @@ public class Display implements ActionListener
     }
       return;
   }
-
-
   //パネルのフォント設定を行う
+  public static void setLabelFont(JLabel label, Color, clr,
+                                  int x_pos, int y_pos, 
+                                  int x_size, int y_size,
+                                  int strSize, boolean opq )
+  {
+    label.setBackground(clr);
+    label.setLocation(x_pos, y_pos);
+    label.setFont( new Font(" MS ゴシック", Font.PLAIN, strSize));
+    label.setHorizontalALignment(JLabel.CENTER);
+    label.setVerticalAlignment(JLabel.CENTER);
+    label.setOpaque(opq);
+
+    return;
+  }
+
+  public static ImageIcon getSuitIcon( int suit )
+  {
+    ImageIcon icon;
+
+    switch (suit) {
+      case 0:
+      icon = new ImageIcon("./src/game/highandlow/img/spade.jpg");
+      return icon;
+
+      case 1:
+      icon = new ImageIcon("./src/game/highandlow/img/heart.jpg");
+      return icon;
+
+      case 2:
+      icon = new ImageIcon("./src/game/highandlow/img/diamond.jpg");
+      return icon;
+
+      case 3:
+      icon = new ImageIcon("./src/game/highandlow/img/clover.jpg");
+      return icon;
+
+      default:
+      return null;
+    }
+  }
+
+  public static String getNoStr( int no)
+  {
+    switch(no)
+    {
+      case 1:
+      return "A";
+
+      case 11:
+      return "J";
+
+      case 12:
+      return "Q";
+
+      case 13:
+      return "K";
+
+      default:
+        return String.value0f(no);
+    }
+  }
 }
